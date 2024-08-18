@@ -1,4 +1,4 @@
-const Queue = require("./queue-linked");
+const Queue = require("./queue-array");
 
 let queue;
 

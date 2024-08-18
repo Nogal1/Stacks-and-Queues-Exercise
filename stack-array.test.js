@@ -1,4 +1,4 @@
-const Stack = require("./stack-linked");
+const Stack = require("./stack-array");
 
 let stack;
 
