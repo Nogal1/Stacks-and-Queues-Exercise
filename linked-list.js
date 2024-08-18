@@ -2,7 +2,6 @@ class Node {
     constructor(val) {
         this.val = val;
         this.next = null;
-        this.prev = null; // Doubly-linked list support (optional)
     }
 }
 
@@ -13,15 +12,27 @@ class LinkedList {
         this.length = 0;
     }
 
-    /** Add to the end of the list */
-    push(val) {
+    /** Add to the start of the list */
+    unshift(val) {
         const newNode = new Node(val);
         if (!this.head) {
             this.head = newNode;
             this.tail = newNode;
         } else {
+            newNode.next = this.head;
+            this.head = newNode;
+        }
+        this.length++;
+    }
+
+    /** Add to the end of the list */
+    push(val) {
+        const newNode = new Node(val);
+        if (!this.tail) {
+            this.head = newNode;
+            this.tail = newNode;
+        } else {
             this.tail.next = newNode;
-            newNode.prev = this.tail; // Doubly-linked list support
             this.tail = newNode;
         }
         this.length++;
@@ -32,9 +43,7 @@ class LinkedList {
         if (!this.head) throw new Error("List is empty");
         const removedNode = this.head;
         this.head = this.head.next;
-        if (this.head) {
-            this.head.prev = null; // Doubly-linked list support
-        } else {
+        if (!this.head) {
             this.tail = null;
         }
         this.length--;
@@ -42,13 +51,13 @@ class LinkedList {
     }
 
     /** Get the value of the first node */
-    peekFirst() {
+    getFirst() {
         if (!this.head) throw new Error("List is empty");
         return this.head.val;
     }
 
     /** Get the value of the last node */
-    peekLast() {
+    getLast() {
         if (!this.tail) throw new Error("List is empty");
         return this.tail.val;
     }
