@@ -1,0 +1,23 @@
+Initialize:
+  backStack = empty stack
+  forwardStack = empty stack
+  currentPage = null
+
+Function visitPage(newPage):
+  if currentPage is not null:
+    push currentPage onto backStack
+  clear forwardStack
+  currentPage = newPage
+
+Function goBack():
+  if backStack is not empty:
+    push currentPage onto forwardStack
+    currentPage = pop from backStack
+
+Function goForward():
+  if forwardStack is not empty:
+    push currentPage onto backStack
+    currentPage = pop from forwardStack
+
+Function getCurrentPage():
+  return currentPage
